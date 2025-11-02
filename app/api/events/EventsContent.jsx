@@ -1,12 +1,10 @@
-// app/events/page.jsx
+// app/events/EventsContent.jsx
 'use client';
-import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import EventCard from '@/components/EventCard';
 import { eventsData } from '../data/events';
 
-// Inner component banaye jo useSearchParams use karega
-function EventsContent() {
+export default function EventsContent() {
   const searchParams = useSearchParams();
   const artistName = searchParams.get('artist');
 
@@ -35,25 +33,5 @@ function EventsContent() {
         </div>
       </div>
     </div>
-  );
-}
-
-// Main component Suspense ke andar wrap karen
-export default function EventsPage() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 py-8">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold max-sm:text-3xl bg-gradient-to-br from-orange-400 to-teal-600 bg-clip-text text-transparent mx-4 text-center mb-12">
-            Loading Events...
-          </h1>
-          <div className="flex justify-center">
-            <div className="animate-pulse text-gray-600">Loading events...</div>
-          </div>
-        </div>
-      </div>
-    }>
-      <EventsContent />
-    </Suspense>
   );
 }
